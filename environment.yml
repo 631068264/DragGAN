@@ -25,3 +25,21 @@ dependencies:
     - imageio-ffmpeg==0.4.3
     # pyspng is currently broken on MacOS (see https://github.com/nurpax/pyspng/pull/6 for instance)
     - pyspng-seunglab
+
+
+
+
+Traceback (most recent call last):
+  File "/xxx/dl/apps/DragGAN/PTI/run.py", line 24, in <module>
+    raise e
+  File "/xxx/dl/apps/DragGAN/PTI/run.py", line 21, in <module>
+    align_data.pre_process_images(image_original)
+  File "/xxx/dl/apps/DragGAN/PTI/utils/align_data.py", line 24, in pre_process_images
+    raise e
+  File "/xxx/dl/apps/DragGAN/PTI/utils/align_data.py", line 20, in pre_process_images
+    aligned_image = align_face(filepath=f'{raw_images_path}/{image_name}',
+  File "/xxx/dl/apps/DragGAN/PTI/utils/alignment.py", line 35, in align_face
+    lm = get_landmark(filepath, predictor)
+  File "/xxx/dl/apps/DragGAN/PTI/utils/alignment.py", line 15, in get_landmark
+    img = dlib.load_rgb_image(filepath)
+RuntimeError: Unable to open file: ./image_original/09Hunter1-superJumbo.jpeg

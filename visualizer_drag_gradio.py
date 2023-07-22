@@ -71,12 +71,12 @@ def init_images(global_state):
         state = global_state.value
     else:
         state = global_state
-
+    w_pivot = torch.load(f'/data/home/yaokj5/dl/apps/DragGAN/checkpoints/0.pt')
     state['renderer'].init_network(
         state['generator_params'],  # res
         valid_checkpoints_dict[state['pretrained_weight']],  # pkl
         state['params']['seed'],  # w0_seed,
-        None,  # w_load
+        w_pivot,  # w_load
         state['params']['latent_space'] == 'w+',  # w_plus
         'const',
         state['params']['trunc_psi'],  # trunc_psi,
@@ -161,7 +161,7 @@ print(os.listdir(cache_dir))
 print('Valid checkpoint file:')
 print(valid_checkpoints_dict)
 
-init_pkl = 'stylegan2_lions_512_pytorch'
+init_pkl = 'stylegan2_custom_512_pytorch'
 
 with gr.Blocks() as app:
 
@@ -868,4 +868,4 @@ with gr.Blocks() as app:
 
 gr.close_all()
 app.queue(concurrency_count=3, max_size=20)
-app.launch(share=args.share, server_name="0.0.0.0" if args.listen else "127.0.0.1")
+app.launch(share=False, inbrowser=True,debug=False,server_name='0.0.0.0',server_port=7871)
